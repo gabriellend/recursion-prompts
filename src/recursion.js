@@ -6,8 +6,28 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
+
+//I: any positive number
+//O: the factorial of that number
+//E: negative integers
+//Step 1: smallest piece is 0
+//Step 2: write function
+//Step 3: the function will need to continue if n is not 0 and not negative
+//Step 4:
+
 var factorial = function(n) {
+  if (n < 0) {
+    return null;
+  }
+
+  if (n === 0) {
+    return 1;
+  }
+
+  return (n * factorial(n -1));
 };
+
+factorial(2); //2
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
