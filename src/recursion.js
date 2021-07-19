@@ -93,7 +93,26 @@ var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
+
+//I: any number
+//O: a boolean, true if even and false if odd
+//C: needs to work with negative numbers
+//E: none
+//Step 1: the smallest piece is 0
+//Step 2: write function for that piece
+//Step 3: the function will need to continue if you can still subtract 2 from n
+//Step 4: make the recursive call
+//Step 5: accumulate the return
+
 var isEven = function(n) {
+  if (n === 0) {
+    return true;
+  } else if (n === 1) {
+    return false;
+  }
+
+  n = Math.abs(n);
+  return isEven(n-2);
 };
 
 // 5. Sum all integers below a given integer.
