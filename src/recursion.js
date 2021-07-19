@@ -13,7 +13,8 @@
 //Step 1: smallest piece is 0
 //Step 2: write function
 //Step 3: the function will need to continue if n is not 0 and not negative
-//Step 4:
+//Step 4: make the recursive call
+//Step 5: accumulate the return
 
 var factorial = function(n) {
   if (n < 0) {
@@ -27,11 +28,36 @@ var factorial = function(n) {
   return (n * factorial(n -1));
 };
 
-factorial(2); //2
-
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
+
+//I: an array of integers
+//O: the sum of those integers
+//E: return 0 for empty array
+//Step 1: the smallest piece is an array with one value
+//Step 2: write function for that piece
+//Step 3: the function will need to continue if there is more than one value in the array
+//Step 4: make the recursive call
+//Step 5: accumulate the return
+
 var sum = function(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+
+  if (array.length === 1) {
+    return array[0];
+  }
+
+  if (typeof array === 'number') {
+    return array;
+  }
+
+  var result = 0;
+  array.forEach(function(item) {
+    result += sum(item);
+  });
+  return result;
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
