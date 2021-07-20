@@ -143,7 +143,29 @@ var isEven = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+
+//I: two numbers
+//O: an array with the integers between and excluding the two input integers
+//C: should accept larger or smaller first
+//E: return an empty array if there are no integers between (i.e. if input was (1,2))
+//Step 1: the smallest piece is if there are no numbers between x and y
+//Step 2: write function for that piece
+//Step 3: the function will need to continue if there are numbers between the two inputs
+//Step 4: make the recursive call
+//Step 5: accumulate the return
+
 var range = function(x, y) {
+  if (x === y || x - y === 1 || y - x === 1) {
+    return [];
+    }
+
+    if (x - y > 1) {
+      return [x - 1].concat(range(x - 1 , y));
+    }
+
+    if (y - x > 1) {
+      return [x + 1].concat(range(x + 1 , y));
+    }
 };
 
 // 7. Compute the exponent of a number.
