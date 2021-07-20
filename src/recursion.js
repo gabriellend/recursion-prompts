@@ -213,7 +213,29 @@ var exponent = function(base, exp) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
+
+//I: one number
+//O: boolean, true if the number is a power of two, false if it is not
+//C: do we have to deal with negatives?
+//E: none
+//Step 1: the smallest piece would be 0 or 1
+//Step 2: write function for that piece
+//Step 3: the function will need to continue if n is greater than 1
+//Step 4: make the recursive call
+//Step 5: accumulate the return
+
 var powerOfTwo = function(n) {
+  // if n is 0 or 1
+  if (n === 1) {
+    // return true;
+    return true;
+  }
+
+  if (!Number.isInteger(n) || n === 0) {
+    return false;
+  }
+
+  return powerOfTwo(n/2);
 };
 
 // 9. Write a function that reverses a string.
