@@ -264,7 +264,43 @@ var reverse = function(string) {
 };
 
 // 10. Write a function that determines if a string is a palindrome.
+
+//I: a string
+//O: a boolean, true if it is, false if it's not
+//C: should ignore space and capital letters
+//E: none
+//Step 1: the smallest piece would be one letter
+//Step 2: write function for that piece
+//Step 3: the function will need to continue if the string is longer than one letter
+//Step 4: make the recursive call
+//Step 5: accumulate the return
+
 var palindrome = function(string) {
+  if (string.length === 1) {
+    return true;
+  }
+
+  string = string.toLowerCase();
+
+  var noSpaces = '';
+  for (var i = string.length - 1; i >= 0; i--) {
+    if (palindrome(string[i]) && string[i] !== ' ') {
+    noSpaces += string[i];
+    }
+  }
+
+  var reversed = '';
+  for (var i = noSpaces.length - 1; i >= 0; i--) {
+    if (palindrome(noSpaces[i])) {
+    reversed += noSpaces[i];
+    }
+  }
+
+  if (noSpaces === reversed) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
