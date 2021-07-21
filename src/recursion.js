@@ -393,6 +393,7 @@ var countKeysInObj = function(obj, key) {
 // Step 3: the functin would need to continue if there is more than one property
 // Step 4: make the recursive call
 
+//how does count variable transfer? Or does count always refer to the original count?
 var countValuesInObj = function(obj, value) {
   if (Object.values(obj).length === 1 && typeof Object.values(obj)[0] !== 'object' ) {
     if (value === Object.values(obj)[0]) {
@@ -411,7 +412,40 @@ var countValuesInObj = function(obj, value) {
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
+
+// I: an object, a key to find in the object, a new name for that(those) key(s)
+// O: the same object, with the target keys' name changed
+// Step 1: the smallest piece would be an object with one property
+// Step 2: write the function for that piece
+// Step 3: the functin would need to continue if there is more than one property
+// Step 4: make the recursive call
+
+//input = {e:{x:'y'},
+//         t:{r:{e:'r'},
+//            p:{y:'r'}},
+//            y:'e'};
+
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+  if ((Object.keys(obj).length === 1 && typeof Object.values(obj)[0] !== 'object') || typeof obj !== 'object') {
+    if (Object.keys(obj)[0] === oldKey) {
+    obj[newKey] = obj[oldKey];
+    delete obj[oldKey];
+    return obj;
+    } else {
+      return obj;
+    }
+  }
+
+  for (var key in obj) {
+    if (key === oldKey) {
+      obj[newKey] = obj[oldKey];
+      // tried putting delete obj[oldKey] here first
+    }
+    // but key was still registering as 'r' down here, and came up as 'undefined' because it was deleted, setting it to newKey did not work either, why?
+    obj[key] = replaceKeysInObj(obj[key], oldKey, newKey);
+    delete obj[oldKey];
+  }
+  return obj;
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
